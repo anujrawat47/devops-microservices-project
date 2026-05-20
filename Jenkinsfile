@@ -16,25 +16,25 @@ pipeline {
 
         stage('Pull Latest Images') {
             steps {
-                sh 'docker-compose -f $COMPOSE_FILE pull'
+                bat 'docker-compose -f %COMPOSE_FILE% pull'
             }
         }
 
         stage('Stop Existing Containers') {
             steps {
-                sh 'docker-compose -f $COMPOSE_FILE down'
+                bat 'docker-compose -f %COMPOSE_FILE% down'
             }
         }
 
         stage('Deploy Containers') {
             steps {
-                sh 'docker-compose -f $COMPOSE_FILE up -d'
+                bat 'docker-compose -f %COMPOSE_FILE% up -d'
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                sh 'docker ps'
+                bat 'docker ps'
             }
         }
     }
